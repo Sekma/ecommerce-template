@@ -27,7 +27,7 @@ return new class extends Migration
         $table->decimal('price', 10, 3);
         $table->decimal('sale_price', 10, 3)->nullable();
 
-        $table->unsignedInteger('stock')->default(0);
+        $table->unsignedInteger('stock')->nullable();
 
         $table->string('sku')->nullable()->unique();
 
