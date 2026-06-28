@@ -18,7 +18,7 @@ return new class extends Migration
               ->constrained()
               ->cascadeOnDelete();
 
-        $table->string('image');
+        $table->string('path');
 
         $table->unsignedInteger('sort_order')->default(0);
 

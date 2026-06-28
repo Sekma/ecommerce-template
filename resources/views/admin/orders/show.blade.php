@@ -9,12 +9,18 @@
 
         <h2>Commande {{ $order->order_number }}</h2>
 
-        <a href="{{ route('admin.orders.index') }}"
-           class="btn btn-secondary">
+        <a href="{{ url()->previous() }}" 
+            class="btn btn-secondary">
             Retour
         </a>
 
     </div>
+
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
 
     <div class="row">
 
@@ -134,6 +140,73 @@
                     </table>
 
                 </div>
+                
+            <div class="card mt-4">
+
+                <div class="card-header">
+                    Modifier le statut
+                </div>
+
+                <div class="card-body">
+
+                    <form method="POST"
+                        action="{{ route('admin.orders.updateStatus', $order) }}">
+
+                        @csrf
+                        @method('PATCH')
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+
+                                <select name="status" class="form-select">
+
+                                    <option value="pending"
+                                        @selected($order->status=='pending')>
+                                        En attente
+                                    </option>
+
+                                    <option value="confirmed"
+                                        @selected($order->status=='confirmed')>
+                                        Confirmée
+                                    </option>
+
+                                    <option value="shipped"
+                                        @selected($order->status=='shipped')>
+                                        Expédiée
+                                    </option>
+
+                                    <option value="delivered"
+                                        @selected($order->status=='delivered')>
+                                        Livrée
+                                    </option>
+
+                                    <option value="cancelled"
+                                        @selected($order->status=='cancelled')>
+                                        Annulée
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-2">
+
+                                <button class="btn btn-success">
+                                    Enregistrer
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
 
             </div>
 

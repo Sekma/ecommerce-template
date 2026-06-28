@@ -94,7 +94,13 @@
                                 <td>{{ number_format($order->total, 3) }} DT</td>
 
                                 <td>
-                                    <span class="badge bg-secondary">
+                                    <span class="badge
+                                        @if($order->status == 'pending') bg-warning
+                                        @elseif($order->status == 'confirmed') bg-info
+                                        @elseif($order->status == 'shipped') bg-primary
+                                        @elseif($order->status == 'delivered') bg-success
+                                        @else bg-danger
+                                        @endif">
                                         {{ ucfirst($order->status) }}
                                     </span>
                                 </td>

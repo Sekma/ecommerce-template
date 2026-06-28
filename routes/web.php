@@ -19,8 +19,12 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('categories', CategoryController::class);
 
     Route::resource('products', ProductController::class);
+
     Route::resource('orders', OrderController::class);
+    Route::patch( 'orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+
     Route::resource('customers', CustomerController::class)->only(['index', 'show']);
+    
     Route::get('settings', [SettingController::class, 'index'])->name('settings');
 
 });
