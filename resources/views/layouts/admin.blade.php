@@ -40,7 +40,7 @@
                     Catégories
                 </a>
 
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="{{ route('admin.products.index') }}" class="list-group-item list-group-item-action">
                     <i class="bi bi-box-seam me-2"></i>
                     Produits
                 </a>
