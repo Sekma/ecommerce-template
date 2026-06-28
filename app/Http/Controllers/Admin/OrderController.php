@@ -17,23 +17,16 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::with('customer')
+            ->when(request('status'), function ($query) {
+                $query->where('status', request('status'));
+            })
             ->latest()
-            ->paginate(15);
+            ->paginate(15)
+            ->withQueryString();
 
         return view('admin.orders.index', compact('orders'));
     }
 
-    public function show(Order $order)
-    {
-        $order->load([
-            'customer',
-            'items.product',
-        ]);
-
-        return view('admin.orders.show', compact('order'));
-    }
-
- 
 
     /**
      * Show the form for creating a new resource.
@@ -51,7 +44,15 @@ class OrderController extends Controller
         //
     }
 
- 
+    /**
+     * Display the specified resource.
+     */
+    public function show(Order $order)
+    {
+        $order->load([ 'customer', 'items.product', ]);
+        
+        return view('admin.orders.show', compact('order'));
+    }
 
     /**
      * Show the form for editing the specified resource.

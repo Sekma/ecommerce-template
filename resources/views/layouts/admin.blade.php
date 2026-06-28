@@ -45,12 +45,12 @@
                     Produits
                 </a>
 
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="{{ route('admin.orders.index') }}" class="list-group-item list-group-item-action">
                     <i class="bi bi-cart me-2"></i>
                     Commandes
                 </a>
 
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="{{ route('admin.customers.index') }}" class="list-group-item list-group-item-action">
                     <i class="bi bi-people me-2"></i>
                     Clients
                 </a>
