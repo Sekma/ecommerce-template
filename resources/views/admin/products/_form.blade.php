@@ -234,6 +234,25 @@
             </label>
 
         </div>
+        <div class="form-check mb-3">
+
+            <input
+                class="form-check-input"
+                type="checkbox"
+                name="free_shipping"
+                id="free_shipping"
+                value="1"
+                {{ old('free_shipping', $product->free_shipping ?? false) ? 'checked' : '' }}>
+
+            <label
+                class="form-check-label"
+                for="free_shipping">
+
+                Livraison gratuite
+
+            </label>
+
+        </div>
 
         <div class="form-check">
 

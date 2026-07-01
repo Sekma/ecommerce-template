@@ -68,6 +68,7 @@ public function index()
             'sku'               => $request->sku,
             'is_active'         => $request->boolean('is_active'),
             'is_featured'       => $request->boolean('is_featured'),
+            'free_shipping' => $request->has('free_shipping'),
         ]);
 
         if ($request->hasFile('image')) {
@@ -119,6 +120,7 @@ public function update(StoreProductRequest $request, Product $product)
         'sku'               => $request->sku,
         'is_active'         => $request->boolean('is_active'),
         'is_featured'       => $request->boolean('is_featured'),
+        'free_shipping' => $request->has('free_shipping'),
     ]);
 
     if ($request->hasFile('image')) {

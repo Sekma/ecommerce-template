@@ -39,12 +39,16 @@ class OrderSeeder extends Seeder
                     'order_number' => 'CMD-' . now()->format('Y') . '-' . str_pad(rand(1, 99999), 5, '0', STR_PAD_LEFT),
                     'customer_id' => $customer->id,
                     'subtotal' => 0,
-                    'shipping_cost' => 8,
+                    'shipping_cost' => 0,
                     'total' => 0,
                     'status' => $statuses[array_rand($statuses)],
                 ]);
 
                 $selectedProducts = $products->random(rand(1, 3));
+
+                $shippingCost = $selectedProducts->contains(function ($product) {
+                    return !$product->free_shipping;
+                }) ? 8 : 0;
 
                 foreach ($selectedProducts as $product) {
 
@@ -65,8 +69,9 @@ class OrderSeeder extends Seeder
                 }
 
                 $order->update([
+                    'shipping_cost' => $shippingCost,
                     'subtotal' => $subtotal,
-                    'total' => $subtotal + $order->shipping_cost,
+                    'total' => $subtotal + $shippingCost,
                 ]);
             }
         }

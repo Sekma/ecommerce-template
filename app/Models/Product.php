@@ -20,6 +20,7 @@ class Product extends Model
         'sku',
         'is_active',
         'is_featured',
+        'free_shipping',
     ];
 
     protected $casts = [
@@ -28,6 +29,7 @@ class Product extends Model
         'stock' => 'integer',
         'is_active' => 'boolean',
         'is_featured' => 'boolean',
+        'free_shipping' => 'boolean',
     ];
 
     public function category(): BelongsTo
